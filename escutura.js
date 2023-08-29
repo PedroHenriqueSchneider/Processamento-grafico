@@ -108,5 +108,5 @@ function animate() {
 // Chamada das funções de inicialização
 init();
 createObjects();
-const controls = new OrbitControls(camera1, renderer.domElement);
+const controls = new OrbitControls(camera4, renderer.domElement);
 animate();
