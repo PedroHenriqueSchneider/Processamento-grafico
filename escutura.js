@@ -1,112 +1,117 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
 // Variáveis globais
-let scene, camera1, camera2, camera3, camera4, renderer;
-let object1, object2;
-let directionalLight, pointLight, spotLight, ambientLight;
+const scene1 = new THREE.Scene();
+const scene2 = new THREE.Scene();
+const scene3 = new THREE.Scene();
+const scene4 = new THREE.Scene();
 
+const camera1 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera2 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera3 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera4 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-// Função de inicialização
-function init() {
-  // Cena
-  scene = new THREE.Scene();
-  
-    // Câmeras
-    const aspect = window.innerWidth / window.innerHeight;
-    camera1 = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
-    camera2 = new THREE.OrthographicCamera(-5, 5, 5, -5, 0.1, 1000);
-    camera3 = new THREE.OrthographicCamera(75, aspect, 0.1, 1000);
-    camera4 = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
-    
-    // Configurar as posições das câmeras
-    camera1.position.set(0, 0, 3);
-    camera2.position.set(0, 0, 5);
-    camera3.position.set(100, 0, 5);
-    camera4.position.set(-5, 0, 5);
-    
-    // Luzes
-    directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    pointLight = new THREE.PointLight(0xff0000, 1, 10);
-    spotLight = new THREE.SpotLight(0x00ff00, 1, 10);
-    ambientLight = new THREE.AmbientLight(0x404040);
-    
-    // Configurar posições das luzes
-    directionalLight.position.set(1, 1, 1);
-    pointLight.position.set(2, 2, 2);
-    spotLight.position.set(-2, -2, -2);
-    
-    // Adicionar as luzes à cena
-    scene.add(directionalLight);
-    scene.add(pointLight);
-    scene.add(spotLight);
-    scene.add(ambientLight);
-    
-    // Renderizador
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('canvas-container').appendChild(renderer.domElement);
-  }
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-  
-  // Função para criar objetos 3D
+// Adicione suas luzes aqui
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+const pointLight = new THREE.PointLight(0xff0000, 1, 10);
+const spotLight = new THREE.SpotLight(0x00ff00, 1, 10);
+const ambientLight = new THREE.AmbientLight(0x404040);
+
+directionalLight.position.set(1, 1, 1);
+pointLight.position.set(2, 2, 2);
+spotLight.position.set(-2, -2, -2);
+
+scene1.add(directionalLight);
+scene1.add(pointLight);
+scene1.add(spotLight);
+scene1.add(ambientLight);
+
+// Configure suas câmeras aqui
+camera1.position.set(0, 0, 5);
+camera2.position.set(0, 0, 5);
+camera3.position.set(0, 0, 5);
+camera4.position.set(0, 0, 5);
+
+// Adicione objetos 3D a cada cena aqui
+const object1 = createObject();
+const object2 = createObject();
+const object3 = createObject();
+const object4 = createObject();
+
+scene1.add(object1);
+scene2.add(object2);
+scene3.add(object3);
+scene4.add(object4);
+
+// Configure OrbitControls para cada câmera
+const controls1 = new OrbitControls(camera1, renderer.domElement);
+const controls2 = new OrbitControls(camera2, renderer.domElement);
+const controls3 = new OrbitControls(camera3, renderer.domElement);
+const controls4 = new OrbitControls(camera4, renderer.domElement);
+
 // Função para criar objetos 3D
-function createObjects() {
+function createObject() {
+    const color = new THREE.Color(Math.random(), Math.random(), Math.random());
+    const material = new THREE.MeshBasicMaterial({ color });
+    const material2 = new THREE.MeshBasicMaterial({ color });
 
-    const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x00ffff];
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const object = new THREE.Mesh(geometry, material);
 
-    // Criar um material com cores diferentes para cada objeto
-    const material1 = colors.map(color => new THREE.MeshBasicMaterial({
-        color
-    }));
-
-    const material2 = new THREE.MeshBasicMaterial({
-        color: 0x800080
-    }); // Verde
-
-    // Criar um cubo
-    const geometry1 = new THREE.BoxGeometry(1, 1, 1);
-    object1 = new THREE.Mesh(geometry1, material1);
-    object1.position.set(0, 0, 0); // Posição do cubo
-
-    // Criar uma esfera
     const geometry2 = new THREE.SphereGeometry(0.5, 32, 32);
-    object2 = new THREE.Mesh(geometry2, material2);
+    const esfera = new THREE.Mesh(geometry2, material2);
+    
+    esfera.position.set(1, 1, 1);
+    object.add(esfera);
 
-    // Configurar a posição relativa da esfera em relação ao cubo
-    object2.position.set(2, 0, 0); // Posição da esfera em relação ao cubo
-    object1.add(object2); // Configurar a esfera como filha do cubo
-
-    camera1.lookAt(object1.position); // Camera 1 aponta para object1 (cubo)
-    camera2.lookAt(object2.position); // Camera 2 aponta para object2 (esfera)
-    camera3.lookAt(object1.position); // Camera 3 aponta para object1 (cubo)
-    camera4.lookAt(object2.position);
-
-    scene.add(object1); // Adicionar o cubo à cena
+    return object;
 }
-
-
 
 // Função de animação
 function animate() {
     requestAnimationFrame(animate);
 
     // Atualize o movimento dos objetos aqui
-    object1.rotation.x += 0.01; // Rotação do cubo
+    object1.rotation.x += 0.01;
     object1.rotation.y += 0.01;
 
-    object2.position.x = Math.sin(Date.now() * 0.001) * 1.3; // Movimento horizontal sinusoidal da esfera
-    object2.position.y = Math.cos(Date.now() * 0.001) * 1.2; // Movimento vertical sinusoidal da esfera
+    object2.rotation.x += 0.01;
+    object2.rotation.y += 0.01;
 
-    renderer.render(scene, camera1); // Renderize a cena com a primeira câmera
-    renderer.render(scene, camera2); // Renderize a cena com a primeira câmera
-    renderer.render(scene, camera3); // Renderize a cena com a primeira câmera
-    renderer.render(scene, camera4); // Renderize a cena com a primeira câmera
+    object3.rotation.x += 0.01;
+    object3.rotation.y += 0.01;
 
+    object4.rotation.x += 0.01;
+    object4.rotation.y += 0.01;
+
+    // Renderize cada cena com sua respectiva câmera
+    renderer.setScissorTest(true);
+    renderer.clear();
+
+    const width = window.innerWidth / 2;
+    const height = window.innerHeight / 2;
+
+    renderer.setViewport(0, height, width, height);
+    renderer.setScissor(0, height, width, height);
+    renderer.render(scene1, camera1);
+
+    renderer.setViewport(width, height, width, height);
+    renderer.setScissor(width, height, width, height);
+    renderer.render(scene2, camera2);
+
+    renderer.setViewport(0, 0, width, height);
+    renderer.setScissor(0, 0, width, height);
+    renderer.render(scene3, camera3);
+
+    renderer.setViewport(width, 0, width, height);
+    renderer.setScissor(width, 0, width, height);
+    renderer.render(scene4, camera4);
 }
 
-
 // Chamada das funções de inicialização
-init();
-createObjects();
-const controls = new OrbitControls(camera4, renderer.domElement);
 animate();
