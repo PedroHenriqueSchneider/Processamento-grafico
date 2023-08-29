@@ -58,7 +58,7 @@ function createObjects() {
     }));
 
     const material2 = new THREE.MeshBasicMaterial({
-        color: 0x00ff00
+        color: 0x800080
     }); // Verde
 
     // Criar um cubo
