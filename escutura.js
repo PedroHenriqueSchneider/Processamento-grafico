@@ -18,7 +18,7 @@ function init() {
     camera4 = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
 
     // Configurar as posições das câmeras
-    camera1.position.set(0, 2, 5);
+    camera1.position.set(0, 0, 3);
     camera2.position.set(0, 0, 5);
     camera3.position.set(5, 0, 5);
     camera4.position.set(-5, 0, 5);
@@ -82,8 +82,8 @@ function animate() {
   object1.rotation.x += 0.01; // Rotação do cubo
   object1.rotation.y += 0.01;
 
-  object2.position.x = Math.sin(Date.now() * 0.001) * 3; // Movimento horizontal sinusoidal da esfera
-  object2.position.y = Math.cos(Date.now() * 0.001) * 3; // Movimento vertical sinusoidal da esfera
+  object2.position.x = Math.sin(Date.now() * 0.001) * 1.3; // Movimento horizontal sinusoidal da esfera
+  object2.position.y = Math.cos(Date.now() * 0.001) * 1.1; // Movimento vertical sinusoidal da esfera
 
   renderer.render(scene, camera1); // Renderize a cena com a primeira câmera
 }
