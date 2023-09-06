@@ -21,12 +21,8 @@ Princípais características implementadas:
 - Uso da classe RawShaderMaterial para visualização mais avançada e personalizada dos dados.
 -----------------------------------------------------------------
 Modo de uso:
-1. Instale o Node.js em: https://nodejs.org/en
-2. Instale o three.js
-# three.js
-npm install --save three
-3. Instale o vite
-# vite
-npm install --save-dev vite
-# execute o vite
-npx vite
+1. Clonar o repositório em sua máquina.
+2. Instalar os pacotes necessários.
+npm install
+3. Iniciar a aplicação.
+npx vite
