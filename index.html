@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exposição de Pedras Preciosas</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-  <div id="scene-container"></div>
-  <script type="module" src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposição de Pedras Preciosas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <div id="scene-container"></div>
+    <div id="buttons-container">
+      <button id="move-left" class="button"><i class="fas fa-arrow-left"></i></button>
+      <button id="move-right" class="button"><i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+
+    precision mediump float;
+    precision mediump int;
+
+    uniform mat4 modelViewMatrix;
+    uniform mat4 projectionMatrix;
+
+    attribute vec3 position;
+    attribute vec4 color;
+
+    varying vec3 vPosition;
+    varying vec4 vColor;
+
+    void main()	{
+
+      vPosition = position;
+      vColor = color;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+    }
+
+  </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+
+    precision mediump float;
+    precision mediump int;
+
+    uniform float time;
+
+    varying vec3 vPosition;
+    varying vec4 vColor;
+
+    uniform vec3 objectColor;
+    void main()	{
+
+      vec4 color = vec4( objectColor, 0);
+      color.b += tan( vPosition.z * 8.0 + time ) * 0.2;
+      color.r += tan( vPosition.y * 8.0 + time ) * 0.2;
+      color.g += tan( vPosition.x * 8.0 + time ) * 0.2;
+
+
+      gl_FragColor = color;
+
+    }
+
+  </script>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
