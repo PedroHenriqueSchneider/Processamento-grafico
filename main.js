@@ -5,6 +5,14 @@ scene.background = new THREE.Color(0xeeeeee);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+const orthographicCamera = new THREE.OrthographicCamera(
+  window.innerWidth / -2,
+  window.innerWidth / 2,
+  window.innerHeight / 2,
+  window.innerHeight / -2,
+  1,
+  1000
+);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -76,6 +84,19 @@ gems.forEach(gem => {
 
 camera.position.z = 5;
 
+orthographicCamera.position.set(0, 0, 5);
+orthographicCamera.lookAt(0, 0, 0);
+
+
+const aspect = window.innerWidth / window.innerHeight;
+orthographicCamera.left = -2 * aspect;
+orthographicCamera.right = 3 * aspect;
+orthographicCamera.top = 2;
+orthographicCamera.bottom = -2;
+orthographicCamera.near = 1;
+orthographicCamera.far = 1000;
+orthographicCamera.updateProjectionMatrix();
+
 
 document.getElementById('move-left').addEventListener('click', () => {
   const firstGem = gems.shift();
@@ -94,7 +115,17 @@ document.getElementById('move-right').addEventListener('click', () => {
 
 let currentCamera = camera; // camera de perspectiva é a primeira
 
+// Botão para mudar para a câmera ortográfica
+document.getElementById('ortonografic-camera').addEventListener('click', () => {
+  currentCamera = orthographicCamera; 
+  document.getElementById('buttons-container-camera').classList.add('button-transition');
+});
 
+// Botão para mudar para a câmera de perspectiva
+document.getElementById('perspective-camera').addEventListener('click', () => {
+  currentCamera = camera; 
+  document.getElementById('buttons-container-camera').classList.add('button-transition');
+});
 
 function arrangeGems() {
   gems.forEach((gem, index) => {

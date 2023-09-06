@@ -3,10 +3,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  /* Alinhe os elementos na parte inferior da página */
-  align-items: center;
-  /* Centralize horizontalmente */
+  justify-content: flex-end; /* Alinhe os elementos na parte inferior da página */
+  align-items: center; /* Centralize horizontalmente */
 }
 
 #scene-container {
@@ -27,6 +25,15 @@ body {
   box-sizing: border-box;
 }
 
+#buttons-container-camera {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px; /* Espaçamento entre os botões (ajuste conforme necessário) */
+  box-sizing: border-box;
+  position: relative; /* Adicione uma posição relativa para controlar o z-index */
+  bottom: 10px; /* Ajuste o valor para centralizar verticalmente */
+}
 
 .button {
   background-color: transparent;
@@ -35,22 +42,15 @@ body {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* Centralize o conteúdo verticalmente */
-  gap: 5px;
-  /* Espaçamento entre o ícone e o texto */
-  transition: transform 0.3s, z-index 0.3s, cursor 0.3s;
-  /* Adicione transições para a transformação, z-index e cursor */
-  position: relative;
-  /* Adicione uma posição relativa para controlar o z-index */
-  z-index: 1;
-  /* Defina o valor z-index padrão para 1 */
+  align-items: center; /* Centralize o conteúdo verticalmente */
+  gap: 5px; /* Espaçamento entre o ícone e o texto */
+  transition: transform 0.3s, z-index 0.3s, cursor 0.3s; /* Adicione transições para a transformação, z-index e cursor */
+  position: relative; /* Adicione uma posição relativa para controlar o z-index */
+  z-index: 1; /* Defina o valor z-index padrão para 1 */
 }
 
 .button:hover {
   transform: scale(1.2);
-  cursor: pointer;
-  /* Altera o cursor para "pointer" */
-  z-index: 2;
-  /* Eleva o botão para frente */
+  cursor: pointer; /* Altera o cursor para "pointer" */
+  z-index: 2; /* Eleva o botão para frente */
 }
