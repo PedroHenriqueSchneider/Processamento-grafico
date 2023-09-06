@@ -15,7 +15,11 @@ Modo de interação:
 - É possível alterar a câmera da cena por meio dos botões definidos com a descrição de câmera, lembrando que para esse botão modificar a câmera da cena é necessário estar com uma câmera diferente da desejada.
 -----------------------------------------------------------------
 Princípais características implementadas:
+- Câmera ortográfica e perspectiva, por meio de new THREE.OrthographicCamera e new THREE.PerspectiveCamera respectivamente. Dessa forma é possível visualizar a cena de duas formas diferentes e entender o conceito das câmeras.
+- Definição dos objetos 3D (formas geométricas), Icosaedro (Esmeralda), paralelepípedo retangular (barra de ouro), Tetraedro (Diamante), Octaedro (Ruby), Tórus (Anel).
+- Iluminação da cena e sombra em cada objeto.
 - 
+-----------------------------------------------------------------
 Modo de uso:
 1. Instale o Node.js em: https://nodejs.org/en
 2. Instale o three.js
