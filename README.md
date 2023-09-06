@@ -1,5 +1,5 @@
 # Processamento-grafico
-Trabalho de processamento gráfico, ilustrando e definindo conceitos aprendidos em aula para que possa ser visualizado a teoria em prática.
+Trabalho de processamento gráfico, ilustrando e definindo conceitos aprendidos em aula.
 -----------------------------------------------------------------
 - Ilustração dos conceitos de: visão de câmeras (ortográfica e perspectiva), iluminação e, rotação e translação de objetos 3D, baseados em uma exposição de pedras preciosas para a demonstração do conhecimento.
 -----------------------------------------------------------------
