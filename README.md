@@ -28,3 +28,5 @@ npm install --save three
 3. Instale o vite
 # vite
 npm install --save-dev vite
+# execute o vite
+npx vite
