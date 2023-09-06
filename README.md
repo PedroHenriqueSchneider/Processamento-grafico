@@ -21,8 +21,8 @@ Princípais características implementadas:
 - Uso da classe RawShaderMaterial para visualização mais avançada e personalizada dos dados.
 -----------------------------------------------------------------
 Modo de uso:
-1. Clonar o repositório em sua máquina.
-2. Instalar os pacotes necessários.
-npm install
-3. Iniciar a aplicação.
-npx vite
+1. Clone o repositório em sua máquina.
+2. Instale os pacotes necessários:
+- npm install
+3. Inicie a aplicação:
+- npx vite
